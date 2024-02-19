@@ -37,7 +37,11 @@
       document.documentElement.classList.add('dark');
     }
   
-    window.localStorage.setItem('theme', theme);
+    if (theme !== null) {
+      window.localStorage.setItem('theme', theme);
+    } else {
+      console.error("Theme is null, cannot set localStorage item.");
+    }
   
     const handleToggleClick = () => {
       const element = document.documentElement;
@@ -47,8 +51,12 @@
       localStorage.setItem("theme", isDark ? "dark" : "light");
     }
   
-    document.getElementById("themeToggle").addEventListener("click", handleToggleClick);
-});
+    const themeToggle = document.getElementById("themeToggle");
+    if (themeToggle) {
+        themeToggle.addEventListener("click", handleToggleClick);
+    } else {
+        console.error("Element with id 'themeToggle' not found.");
+    }});
   </script>
 
 <script>
